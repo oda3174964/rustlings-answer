@@ -22,14 +22,18 @@ enum ParsePosNonzeroError {
 
 impl From<CreationError> for ParsePosNonzeroError {
     fn from(e: CreationError) -> Self {
-        // TODO: complete this implementation so that the `?` operator will
-        // work for `CreationError`
+        ParsePosNonzeroError::Creation(e)
     }
 }
 
 // TODO: implement another instance of the `From` trait here so that the
 // `?` operator will work in the other place in the `FromStr`
 // implementation below.
+impl From<ParseIntError> for ParsePosNonzeroError {
+    fn from(e: ParseIntError) -> Self {
+        ParsePosNonzeroError::ParseInt(e)
+    }
+}
 
 // Don't change anything below this line.
 
